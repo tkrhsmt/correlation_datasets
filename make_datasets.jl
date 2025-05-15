@@ -272,7 +272,7 @@ function MAIN()
     est = KSG1(MIShannon(); k = 5)
     println("MI          : init : $(association(est, init_data_x, init_data_y))")
     println("            : corr : $(association(est, test_x, test_y))")
-    println("            : corr : $(association(est, test_mi_x, test_mi_y))")
+    println("            :  mi  : $(association(est, test_mi_x, test_mi_y))")
 
 
     with_theme(
