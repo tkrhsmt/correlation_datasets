@@ -206,7 +206,7 @@ function MAIN()
     prob_corr = zeros(4)
     for itr = 1:4
         println("--- $itr ---")
-        test_x, test_y, prob_corr[itr] = MakeDatasets.change_datasets(test_x, test_y,loss_func_circle,max_iter,δ,temp = temp_arr[itr], if_corr = true, if_mi = false)
+        test_x, test_y, prob_corr[itr] = MakeDatasets.change_datasets(test_x, test_y,loss_func_line,max_iter,δ,temp = temp_arr[itr], if_corr = true, if_mi = false)
     end
 
     with_theme(
@@ -234,7 +234,7 @@ function MAIN()
     prob_mi = zeros(4)
     for itr = 1:4
         println("--- $itr ---")
-        test_mi_x, test_mi_y, prob_mi[itr] = MakeDatasets.change_datasets(test_mi_x,test_mi_y,loss_func_circle,max_iter,δ,temp = temp_arr[itr], if_corr = false, if_mi = true)
+        test_mi_x, test_mi_y, prob_mi[itr] = MakeDatasets.change_datasets(test_mi_x,test_mi_y,loss_func_line,max_iter,δ,temp = temp_arr[itr], if_corr = false, if_mi = true)
     end
 
 
@@ -287,7 +287,7 @@ function MAIN()
         p4 = Figure()
         ax = Axis(p4[1, 1]; xlabel = "temperature", ylabel = "probability")
         qqplot!(ax, temp_arr, prob_corr, label = "fix correlation", qqline = :fit)
-        qqplot!(ax, temp_arr, prob_mi, label = "fix mutual information". qqline = :fit)
+        qqplot!(ax, temp_arr, prob_mi, label = "fix mutual information", qqline = :fit)
         axislegend(position = :lt)
         save("prob_scaling.pdf", p4)
     end
